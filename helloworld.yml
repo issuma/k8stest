@@ -1,0 +1,21 @@
+# quick hack for testing with jenkins
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: helloworld
+  name: helloworld
+spec:
+  containers:
+  - args:
+    - /bin/sh
+    - -c
+    - i=0; while [ $i -lt 10 ]; do echo "$i. hello from k8s on `hostname` at $(date)"; i=$((i+1));
+      sleep 2; done
+    image: busybox
+    name: helloworld
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}
